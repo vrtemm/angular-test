@@ -1,0 +1,56 @@
+<div class="flex-wrap">
+  <!-- <div class="form">
+    <input name="file" type="file" [(ngModel)]="file" />
+    <input type="url" name="url" [(ngModel)]="url" placeholder="Add url" />
+    <select name="animation" [(ngModel)]="animation">
+      <option value="" disabled selected>Select animation</option>
+      <option *ngFor="let comp of animations" [value]="comp">
+        {{ comp }}
+      </option>
+    </select>
+    <button (click)="addPhone(file, url, animation)">
+      Добавить
+    </button>
+  </div> -->
+  <form [formGroup]="myForm" novalidate (ngSubmit)="submit()" class="form">
+    <div class="form-group">
+      <label>Image</label>
+      <input name="file" type="file" formControlName="userImg" [(ngModel)]="file" />
+    </div>
+    <div class="form-group">
+      <label>Url</label>
+      <input name="url" formControlName="userUrl" [(ngModel)]="url" placeholder="Add ulr" />
+      <div class="alert alert-danger" *ngIf="
+            myForm.controls['userUrl'].invalid &&
+            myForm.controls['userUrl'].touched
+          ">
+        Add url
+      </div>
+    </div>
+    <div class="form-group">
+      <select name="animation" [(ngModel)]="animation" formControlName="userAnimations">
+        <option value="" disabled selected>Select animation</option>
+        <option *ngFor="let comp of animations" [value]="comp">
+          {{ comp }}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <button [disabled]="myForm.invalid" [ngClass]="{'disabled': myForm.invalid }"
+        (click)="addPhone(file, url, animation)">
+        Отправить
+      </button>
+    </div>
+  </form>
+
+  <div class="result">
+    <ul *ngFor="let p of phones">
+      <li>
+        <a [href]="p.url">
+          <img [src]="p.file" alt="">
+          {{ p.file }} ({{ p.animation }})
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

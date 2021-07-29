@@ -1,0 +1,102 @@
+.flex-wrap {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+
+  input {
+    border: 1px solid transparent;
+  }
+
+  label {
+    font-size: 11px;
+    color: #212529;
+    font-weight: 300;
+    margin-bottom: 6.5px;
+    font-family: sans-serif;
+  }
+
+  input[type="file"] {
+    background: none;
+    padding: 0;
+    height: auto;
+    border-radius: 0;
+
+    &.ng-touched.ng-invalid {
+      color: rgb(252, 76, 64);
+      border: none;
+    }
+  }
+
+  button.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  input,
+  select,
+  button {
+    border: none;
+    font-family: sans-serif;
+    height: 40px;
+    margin-bottom: 35px;
+    color: #02B2FD;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 0 7px;
+    background: #fff;
+    outline: none;
+
+    &.ng-touched.ng-invalid {
+      border: 1px solid rgb(252, 76, 64);
+    }
+
+    &:focus {
+      border-color: #80bdff;
+    }
+
+    &::placeholder {
+      color: #02B2FD;
+    }
+  }
+
+  .alert-danger {
+    color: rgb(252, 76, 64);
+    position: absolute;
+    left: 0;
+    top: 70px;
+  }
+
+  button {
+    cursor: pointer;
+    transition: all 0.5s ease;
+
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+
+  &-group {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+}
+
+.result {
+  width: 40%;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: #02B2FD;
+}
