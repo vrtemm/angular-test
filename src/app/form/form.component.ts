@@ -5,7 +5,7 @@ export class Phone {
     constructor(
         public file: string,
         public url: string,
-        public animation: string
+        public animation: Object
     ) { }
 }
 
@@ -22,12 +22,12 @@ export class FormComponent implements OnInit {
     animation = ''
     uploadForm: FormGroup;
     phones: Phone[] = []
-    animations: string[] = [
-        'Slide from left to right',
-        'Slide from right to left',
+    animations: Object = [
+        { title: 'Slide from left to right', value: 'left-to-right' },
+        { title: 'Slide from right to left', value: 'right-to-left' },
     ]
 
-    addPhone(file: string, url: string, animation: string) {
+    addPhone(file: string, url: string, animation: Object) {
         this.phones.push(new Phone(file, url, animation))
     }
 

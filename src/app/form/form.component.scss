@@ -91,6 +91,76 @@
 
 .result {
   width: 40%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin-bottom: 30px;
+
+    &.left-to-right {
+      a {
+        animation: left-to-right 1s ease;
+      }
+    }
+
+    &.right-to-left {
+      a {
+        animation: right-to-left 1s ease;
+      }
+    }
+
+    a {
+      width: 100%;
+      height: 100%;
+      text-decoration: none;
+      background-color: blue;
+      display: block;
+      position: absolute;
+      transition: all 1s ease;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: all 1s ease;
+      }
+
+      &:hover {
+        img {
+          transform: scale(1.5);
+        }
+      }
+    }
+  }
+}
+
+@keyframes left-to-right {
+  from {
+    left: -100px;
+    opacity: 0;
+  }
+
+  to {
+    left: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes right-to-left {
+  from {
+    right: -100px;
+    opacity: 0;
+  }
+
+  to {
+    right: 0;
+    opacity: 1;
+  }
 }
 
 input:-webkit-autofill,

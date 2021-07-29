@@ -4,7 +4,6 @@
       <label>Image</label>
       <input type="file" accept="image/*" (change)="showPreview($event)" />
     </div>
-    <img [src]="file">
     <div class="form-group">
       <label>Url</label>
       <input name="url" formControlName="userUrl" [(ngModel)]="url" placeholder="Add ulr" />
@@ -18,23 +17,23 @@
     <div class="form-group">
       <select name="animation" [(ngModel)]="animation" formControlName="userAnimations">
         <option value="" disabled selected>Select animation</option>
-        <option *ngFor="let item of animations" [value]="item">
-          {{ item }}
+        <option *ngFor="let item of animations" [value]="item.value">
+          {{ item.title}}
         </option>
       </select>
     </div>
     <div class="form-group">
-      <!-- [disabled]="uploadForm.invalid" [ngClass]="{'disabled': uploadForm.invalid }" -->
-      <button (click)="addPhone(file, url, animation)">
-        Отправить
+      <button (click)="addPhone(file, url, animation)" [disabled]="uploadForm.invalid"
+        [ngClass]="{'disabled': uploadForm.invalid }">
+        Add container with image
       </button>
     </div>
   </form>
 
-  <ul *ngFor="let p of phones" class="result">
-    <li class="result__item">
-      <a class="result__item-link" [href]="p.url">
-        <img [src]="p.file" class="result__item-link-img">
+  <ul class="result">
+    <li class="{{ p.animation }}" *ngFor="let p of phones">
+      <a [href]="p.url">
+        <img [src]="p.file">
         {{ p.animation }}
       </a>
     </li>
