@@ -15,7 +15,7 @@
   <form [formGroup]="myForm" novalidate (ngSubmit)="submit()" class="form">
     <div class="form-group">
       <label>Image</label>
-      <input name="file" type="file" formControlName="userImg" [(ngModel)]="file" />
+      <input name="file" type="file" formControlName="userImg" [(ngModel)]="file" accept="image/*" />
     </div>
     <div class="form-group">
       <label>Url</label>

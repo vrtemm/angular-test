@@ -30,6 +30,7 @@ export class FormComponent {
     addPhone(file: string, url: string, animation: string) {
         this.phones.push(new Phone(file, url, animation))
     }
+
     myForm: FormGroup
     constructor() {
         this.myForm = new FormGroup({
