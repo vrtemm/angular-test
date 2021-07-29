@@ -1,28 +1,16 @@
 <div class="flex-wrap">
-  <!-- <div class="form">
-    <input name="file" type="file" [(ngModel)]="file" />
-    <input type="url" name="url" [(ngModel)]="url" placeholder="Add url" />
-    <select name="animation" [(ngModel)]="animation">
-      <option value="" disabled selected>Select animation</option>
-      <option *ngFor="let comp of animations" [value]="comp">
-        {{ comp }}
-      </option>
-    </select>
-    <button (click)="addPhone(file, url, animation)">
-      Добавить
-    </button>
-  </div> -->
-  <form [formGroup]="myForm" novalidate (ngSubmit)="submit()" class="form">
+  <form [formGroup]="uploadForm" (ngSubmit)="submit()" class="form">
     <div class="form-group">
       <label>Image</label>
-      <input name="file" type="file" formControlName="userImg" [(ngModel)]="file" accept="image/*" />
+      <input type="file" accept="image/*" (change)="showPreview($event)" />
     </div>
+    <img [src]="file">
     <div class="form-group">
       <label>Url</label>
       <input name="url" formControlName="userUrl" [(ngModel)]="url" placeholder="Add ulr" />
       <div class="alert alert-danger" *ngIf="
-            myForm.controls['userUrl'].invalid &&
-            myForm.controls['userUrl'].touched
+            uploadForm.controls['userUrl'].invalid &&
+            uploadForm.controls['userUrl'].touched
           ">
         Add url
       </div>
@@ -30,27 +18,25 @@
     <div class="form-group">
       <select name="animation" [(ngModel)]="animation" formControlName="userAnimations">
         <option value="" disabled selected>Select animation</option>
-        <option *ngFor="let comp of animations" [value]="comp">
-          {{ comp }}
+        <option *ngFor="let item of animations" [value]="item">
+          {{ item }}
         </option>
       </select>
     </div>
     <div class="form-group">
-      <button [disabled]="myForm.invalid" [ngClass]="{'disabled': myForm.invalid }"
-        (click)="addPhone(file, url, animation)">
+      <!-- [disabled]="uploadForm.invalid" [ngClass]="{'disabled': uploadForm.invalid }" -->
+      <button (click)="addPhone(file, url, animation)">
         Отправить
       </button>
     </div>
   </form>
 
-  <div class="result">
-    <ul *ngFor="let p of phones">
-      <li>
-        <a [href]="p.url">
-          <img [src]="p.file" alt="">
-          {{ p.file }} ({{ p.animation }})
-        </a>
-      </li>
-    </ul>
-  </div>
+  <ul *ngFor="let p of phones" class="result">
+    <li class="result__item">
+      <a class="result__item-link" [href]="p.url">
+        <img [src]="p.file" class="result__item-link-img">
+        {{ p.animation }}
+      </a>
+    </li>
+  </ul>
 </div>

@@ -1,9 +1,5 @@
-import { Component } from "@angular/core";
-import {
-    FormGroup,
-    FormControl,
-    Validators,
-} from '@angular/forms'
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 export class Phone {
     constructor(
@@ -18,29 +14,49 @@ export class Phone {
     templateUrl: './form.component.html',
     styleUrls: ['./form.component.scss'],
 })
-export class FormComponent {
-    file = ''
+
+
+export class FormComponent implements OnInit {
+    file: string;
     url = ''
     animation = ''
+    uploadForm: FormGroup;
     phones: Phone[] = []
     animations: string[] = [
-        'slide from left to right',
-        'slide from right to left',
+        'Slide from left to right',
+        'Slide from right to left',
     ]
+
     addPhone(file: string, url: string, animation: string) {
         this.phones.push(new Phone(file, url, animation))
     }
 
-    myForm: FormGroup
-    constructor() {
-        this.myForm = new FormGroup({
-            userUrl: new FormControl('', Validators.required),
-            userAnimations: new FormControl('', Validators.required),
-            userImg: new FormControl('', Validators.required),
+    constructor(public fb: FormBuilder) {
+        this.uploadForm = this.fb.group({
+            avatar: [null, Validators.required],
+            userUrl: ['', Validators.required],
+            userAnimations: ['', Validators.required]
         })
     }
 
+    ngOnInit(): void { }
+
+    showPreview(event) {
+        const file = (event.target as HTMLInputElement).files[0];
+        this.uploadForm.patchValue({
+            avatar: file
+        });
+        this.uploadForm.get('avatar').updateValueAndValidity()
+
+        const reader = new FileReader();
+        reader.onload = () => {
+            this.file = reader.result as string;
+        }
+        reader.readAsDataURL(file)
+
+    }
+
     submit() {
-        console.log(this.myForm)
+        console.log(this.uploadForm.value)
     }
 }
