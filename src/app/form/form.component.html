@@ -2,7 +2,7 @@
   <form [formGroup]="uploadForm" (ngSubmit)="submit()" class="form">
     <div class="form-group">
       <label>Image</label>
-      <input type="file" accept="image/*" (change)="showPreview($event)" formControlName="userImg" />
+      <input type="file" accept="image/*" (change)="showPreview($event)" />
     </div>
     <div class="form-group">
       <label>Url</label>
