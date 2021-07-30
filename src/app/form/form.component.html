@@ -23,7 +23,7 @@
       </select>
     </div>
     <div class="form-group">
-      <button (click)="addPhone(file, url, animation)" [disabled]="uploadForm.invalid"
+      <button (click)="addContainer(file, url, animation)" [disabled]="uploadForm.invalid"
         [ngClass]="{'disabled': uploadForm.invalid }">
         Add container with image
       </button>
@@ -31,7 +31,7 @@
   </form>
 
   <ul class="result">
-    <li class="{{ p.animation }}" *ngFor="let p of phones">
+    <li class="{{ p.animation }}" *ngFor="let p of containers">
       <a [href]="p.url">
         <img [src]="p.file">
         {{ p.animation }}

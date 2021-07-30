@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
-export class Phone {
+export class Container {
     constructor(
         public file: string,
         public url: string,
@@ -21,14 +21,14 @@ export class FormComponent implements OnInit {
     url = ''
     animation = ''
     uploadForm: FormGroup;
-    phones: Phone[] = []
+    containers: Container[] = []
     animations: Object = [
         { title: 'Slide from left to right', value: 'left-to-right' },
         { title: 'Slide from right to left', value: 'right-to-left' },
     ]
 
-    addPhone(file: string, url: string, animation: Object) {
-        this.phones.push(new Phone(file, url, animation))
+    addContainer(file: string, url: string, animation: Object) {
+        this.containers.push(new Container(file, url, animation))
     }
 
     constructor(public fb: FormBuilder) {
