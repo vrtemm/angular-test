@@ -33,7 +33,7 @@ export class FormComponent implements OnInit {
 
     constructor(public fb: FormBuilder) {
         this.uploadForm = this.fb.group({
-            avatar: [null, Validators.required],
+            userImg: [null, Validators.required],
             userUrl: ['', Validators.required],
             userAnimations: ['', Validators.required]
         })
@@ -44,9 +44,9 @@ export class FormComponent implements OnInit {
     showPreview(event) {
         const file = (event.target as HTMLInputElement).files[0];
         this.uploadForm.patchValue({
-            avatar: file
+            userImg: file
         });
-        this.uploadForm.get('avatar').updateValueAndValidity()
+        this.uploadForm.get('userImg').updateValueAndValidity()
 
         const reader = new FileReader();
         reader.onload = () => {
